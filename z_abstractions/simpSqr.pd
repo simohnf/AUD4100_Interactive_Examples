@@ -1,0 +1,4 @@
+#N canvas 0 23 450 300 12;
+#X obj 186 152 namecanvas \$1-simpSqr;
+#X obj 263 86 r \$1-simpSqrPos;
+#X coords 0 -1 1 1 10 10 2 1 1;

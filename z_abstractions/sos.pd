@@ -1,0 +1,45 @@
+#N canvas 0 23 1036 545 12;
+#X text 128 125 • The speed of sound is greater in more elastic states
+i.e. sound travels faster in solids than through gases.;
+#X text 128 157 • The speed of sound is inversely proportional to
+density. (i.e. the denser the materials the faster the speed of sound)
+;
+#X text 101 34 The speed of sound (c) is affected by the temperature
+\, elasticity and the density of the medium through which it travels
+\, obeying the following relationships:;
+#X text 128 79 • The speed of sound is directly proportional to temperature(t).
+(i.e. as temperature goes up \, so does the speed of sound);
+#X text 135 228 c = 331 + 0.6 x t (in air and at sea level);
+#X obj 732 80 r \$0-t_snd;
+#X obj 732 104 * 0.6;
+#X obj 732 128 + 331;
+#X obj 732 152 change;
+#X obj 732 176 s \$0-sos_rec;
+#X obj 878 80 r \$0-sos_snd;
+#X obj 878 104 - 331;
+#X obj 878 128 / 0.6;
+#X obj 878 152 change;
+#X obj 878 176 s \$0-t_rec;
+#X obj 949 117 r reset;
+#X msg 949 141 21;
+#X obj 106 276 cnv 15 400 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 310 283 (in air & at sea level);
+#X obj 271 282 cnv 14 36 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 271 298 cnv 14 36 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X floatatom 271 300 5 0 0 0 Speed_of_Sound_(m/s) #0-sos_rec #0-sos_snd
+;
+#X floatatom 271 282 5 0 0 0 Temperature_(ºC) #0-t_rec #0-t_snd;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 15 0 16 0;
+#X connect 16 0 14 0;
+#X coords 0 -1 1 1 610 390 2 10 10;

@@ -1,0 +1,39 @@
+#N canvas 30 85 924 426 12;
+#X obj 33 41 vsl 15 128 0 1 0 0 \$0-amp_snd \$0-amp_rec amplitude 0
+-9 0 10 -166441 -262144 -1 0 1;
+#N canvas 101 41 830 429 synth 0;
+#X obj 175 183 r \$0-amp_snd;
+#X msg 175 207 \$1 5;
+#X obj 175 231 line~;
+#X obj 122 215 *~;
+#X obj 50 271 throw~ \$1-outL;
+#X obj 174 271 throw~ \$1-outR;
+#X obj 124 52 r \$0-freq_snd;
+#X obj 123 94 osc~ 200;
+#X obj 583 131 sel 0 1;
+#X obj 583 107 > 0;
+#X obj 600 213 s \$0-amp_rec;
+#X msg 546 172 color 1 0 22;
+#X obj 584 81 r \$0-amp_snd;
+#X msg 644 171 color 1 13 22;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 1;
+#X connect 3 0 4 0;
+#X connect 3 0 5 0;
+#X connect 6 0 7 0;
+#X connect 7 0 3 0;
+#X connect 8 0 11 0;
+#X connect 8 1 13 0;
+#X connect 9 0 8 0;
+#X connect 11 0 10 0;
+#X connect 12 0 9 0;
+#X connect 13 0 10 0;
+#X restore 745 339 pd synth;
+#X text 150 39 Amplitude (A) is the amount of deviation from normal
+atmospheric pressure.;
+#X text 149 102 This relates to our perception of how loud the sound
+is;
+#X text 57 140 <------- change this slider and notice how the sound
+changes;
+#X coords 0 -1 1 1 610 390 2 10 10;

@@ -1,0 +1,15 @@
+#N canvas 0 23 1036 545 12;
+#X obj 67 77 cnv 15 450 240 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 86 84 Tips for Applying Equalisation;
+#X text 108 116 During Recording:;
+#X text 108 134 • Use sparingly (no ‘undo’);
+#X text 108 153 • Clean Up e.g. LPF on cymbals or HPF to eliminate
+rumble;
+#X text 108 173 • Add air (slightly boost 15 - 20KHz to add presence
+to vocals);
+#X text 108 208 • Combining signals into limited single tracks;
+#X text 108 228 • Monitoring EQ (on tape return path);
+#X text 108 263 During Mixdown:;
+#X text 108 280 • No restrictions;
+#X coords 0 -1 1 1 610 390 2 10 10;

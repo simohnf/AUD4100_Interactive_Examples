@@ -1,0 +1,762 @@
+#N canvas 244 229 1036 545 12;
+#N canvas 830 295 738 686 soundSource 0;
+#X obj 76 88 noise~;
+#X text 431 49 FC= sqrt(FL∗FH);
+#X obj 48 18 r \$0-source_snd;
+#X obj 48 42 t f f;
+#X obj 125 90 == 1;
+#X obj 138 144 *~;
+#X obj 62 150 == 0;
+#X obj 64 255 vline~;
+#X obj 42 302 *~;
+#X obj 30 196 *~ 1;
+#X msg 64 231 1 10 \, 0.1 100 10 \, 0 50 200;
+#X obj 64 207 metro 500;
+#X obj 542 488 r \$1-note;
+#X obj 542 535 line~;
+#X obj 317 535 *~;
+#X obj 283 614 throw~ \$1-outL;
+#X obj 396 615 throw~ \$1-outR;
+#X msg 542 511 \$1 25;
+#X obj 318 509 catch~ \$0-postFilter;
+#X obj 137 368 send~ \$0-source;
+#X connect 0 0 5 0;
+#X connect 0 0 9 0;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
+#X connect 3 1 4 0;
+#X connect 4 0 5 1;
+#X connect 5 0 19 0;
+#X connect 6 0 9 1;
+#X connect 6 0 11 0;
+#X connect 7 0 8 1;
+#X connect 8 0 19 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 11 0 10 0;
+#X connect 12 0 17 0;
+#X connect 13 0 14 1;
+#X connect 14 0 15 0;
+#X connect 14 0 16 0;
+#X connect 17 0 13 0;
+#X connect 18 0 14 0;
+#X restore 723 58 pd soundSource;
+#X obj 536 30 vradio 15 1 1 2 \$0-source_snd \$0-source_rec Sound_Source
+0 -8 0 10 -166441 -262144 -1 0;
+#X text 552 45 noise;
+#X text 552 26 pulse;
+#X obj 15 16 vradio 15 1 1 8 \$0-filterType_snd \$0-filterType_rec
+empty 0 -8 0 10 -166441 -262144 -1 0;
+#N canvas 0 23 1227 539 display_logic 0;
+#X msg 171 109 0;
+#X obj 66 144 pack f f;
+#X msg 66 111 1;
+#X obj 82 76 t b f b;
+#X obj 334 294 sel 0 1;
+#X obj 334 270 > 0;
+#X msg 297 335 color 1 0 22;
+#X msg 395 334 color 1 13 22;
+#X obj 335 244 r \$1-note;
+#X obj 515 447 s \$0-source_rec;
+#X obj 469 232 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 115 111 * 500;
+#X obj 75 46 r \$0-filterType_snd;
+#X obj 637 446 s \$0-filterType_rec;
+#X obj 944 85 s \$0-filterType_rec;
+#X obj 66 196 s pd-\$0-pass/cut_filters;
+#X msg 66 169 donecanvasdialog 1 -1 \$1 0 -1 1 1 450 250 \$2 100 \,
+dirty 0;
+#X obj 715 21 r reset;
+#X msg 804 59 0.5;
+#X obj 681 83 s \$0-hsGain_rec;
+#X obj 804 83 s \$0-hsF_rec;
+#X msg 681 60 0.7;
+#X obj 177 431 s \$0-hsGain_rec;
+#X obj 309 451 s \$0-hsF_rec;
+#X msg 946 53 0;
+#X obj 984 111 s \$0-source_rec;
+#X obj 600 35 loadbang;
+#X obj 681 136 s \$0-lsGain_rec;
+#X obj 804 136 s \$0-lsF_rec;
+#X obj 187 474 s \$0-lsGain_rec;
+#X obj 322 494 s \$0-lsF_rec;
+#X obj 594 181 s \$0-peakF_rec;
+#X obj 744 194 s \$0-peakGain_rec;
+#X obj 442 483 s \$0-peakF_rec;
+#X obj 592 496 s \$0-peakGain_rec;
+#X obj 458 510 s \$0-peakW_rec;
+#X msg 613 86 0.2;
+#X obj 881 372 tabread;
+#X obj 782 239 r \$0-geqID;
+#X msg 781 279 set \$1-bandIDs;
+#X obj 976 325 > 0;
+#X obj 903 255 r \$1-note;
+#X msg 1062 474 \; \$1-geq_gain_rec color 1 13 22;
+#X msg 850 474 \; \$1-geq_gain_rec color 1 0 22;
+#X obj 881 395 pack, f 16;
+#X msg 881 419 \$2 \$1;
+#X obj 881 443 route 0 1;
+#X obj 903 279 t b f;
+#N canvas 0 23 450 300 count 0;
+#X obj 37 37 inlet;
+#X msg 39 64 8;
+#X obj 39 88 t f b;
+#X obj 39 112 until;
+#X msg 39 136 1;
+#X obj 39 160 + -1;
+#X obj 39 184 int;
+#X obj 39 208 outlet;
+#X msg 89 122 -1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 8 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 5 1;
+#X connect 6 0 7 0;
+#X connect 8 0 5 1;
+#X restore 903 303 pd count;
+#X msg 1131 342 color 13;
+#X msg 1069 343 color 1;
+#X obj 1026 256 r \$0-geqID;
+#X obj 1090 317 sel 0 1;
+#X obj 1017 378 s;
+#X msg 1031 289 symbol \$1-geqCanvas;
+#X connect 0 0 1 0;
+#X connect 1 0 16 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 3 1 11 0;
+#X connect 3 2 0 0;
+#X connect 4 0 6 0;
+#X connect 4 1 7 0;
+#X connect 5 0 4 0;
+#X connect 6 0 13 0;
+#X connect 6 0 9 0;
+#X connect 6 0 22 0;
+#X connect 6 0 23 0;
+#X connect 6 0 29 0;
+#X connect 6 0 30 0;
+#X connect 6 0 33 0;
+#X connect 6 0 34 0;
+#X connect 6 0 35 0;
+#X connect 7 0 13 0;
+#X connect 7 0 9 0;
+#X connect 7 0 22 0;
+#X connect 7 0 23 0;
+#X connect 7 0 30 0;
+#X connect 7 0 29 0;
+#X connect 7 0 34 0;
+#X connect 7 0 33 0;
+#X connect 7 0 35 0;
+#X connect 8 0 5 0;
+#X connect 10 0 5 0;
+#X connect 11 0 1 1;
+#X connect 12 0 3 0;
+#X connect 16 0 15 0;
+#X connect 17 0 21 0;
+#X connect 17 0 18 0;
+#X connect 17 0 24 0;
+#X connect 17 0 36 0;
+#X connect 18 0 20 0;
+#X connect 18 0 28 0;
+#X connect 18 0 32 0;
+#X connect 21 0 19 0;
+#X connect 21 0 27 0;
+#X connect 24 0 25 0;
+#X connect 24 0 14 0;
+#X connect 26 0 21 0;
+#X connect 26 0 18 0;
+#X connect 26 0 24 0;
+#X connect 36 0 31 0;
+#X connect 37 0 44 0;
+#X connect 38 0 39 0;
+#X connect 39 0 37 0;
+#X connect 40 0 44 1;
+#X connect 40 0 52 0;
+#X connect 41 0 47 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 43 0;
+#X connect 46 1 42 0;
+#X connect 47 0 48 0;
+#X connect 47 1 40 0;
+#X connect 48 0 37 0;
+#X connect 49 0 53 0;
+#X connect 50 0 53 0;
+#X connect 51 0 54 0;
+#X connect 52 0 50 0;
+#X connect 52 1 49 0;
+#X connect 54 0 53 1;
+#X coords 0 539 1 538 400 200 0;
+#X restore 757 166 pd display_logic;
+#X text 211 381 Press & hold the SPACEBAR to trigger the sound source
+;
+#N canvas 0 23 1280 478 \$0-pass/cut_filters 0;
+#X obj 522 137 cnv 15 405 30 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X obj 10 123 cnv 15 425 140 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 12 124 Shelving Equalisers;
+#X text 15 153 This type of EQ offers even gain (cut or boost) from
+a certain specified ‘turnover’ or ‘shelving’ frequency.;
+#X text 552 136 High Shelving: control over a certain frequency.;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-highShelf 100 float 1;
+#A 0 0.999998 1.00078 0.998676 0.998395 1.00088 1.00112 0.998194 0.99839
+0.998709 1.00281 1.00004 1.00422 1.00328 1.00647 1.00982 1.02077 1.02668
+1.03931 1.05661 1.07688 1.09821 1.12682 1.15921 1.19539 1.23628 1.27687
+1.32307 1.36431 1.41293 1.45652 1.49822 1.53586 1.57343 1.60475 1.63449
+1.66033 1.6831 1.70363 1.7203 1.73556 1.74659 1.76046 1.77043 1.77895
+1.78581 1.79251 1.79866 1.80409 1.80836 1.81214 1.81567 1.81869 1.82084
+1.82118 1.82467 1.82635 1.82765 1.82845 1.82897 1.83117 1.83093 1.83327
+1.83404 1.83474 1.83524 1.83636 1.83456 1.83656 1.83694 1.83717 1.83696
+1.83657 1.83627 1.83878 1.83861 1.83881 1.83885 1.83899 1.83952 1.83774
+1.83945 1.83956 1.83967 1.8396 1.83935 1.83856 1.84032 1.84007 1.84013
+1.83989 1.83999 1.83983 1.83868 1.84034 1.84036 1.84023 1.84048 1.84005
+1.83994 1.84079;
+#X coords 0 3 99 0 200 100 1 0 0;
+#X restore 630 196 graph;
+#X text 585 288 gain=0;
+#X text 619 256 1;
+#X obj 633 296 hsl 100 15 0 1 0 0 \$0-hsF_snd \$0-hsF_rec frequency
+103 8 0 10 -166441 -262144 -1 4950 1;
+#X obj 830 198 vsl 15 95 -1 1 0 0 \$0-hsGain_snd \$0-hsGain_rec gain
+0 -9 0 10 -166441 -262144 -1 7990 1;
+#N canvas 0 23 983 642 hs_Logic 0;
+#X floatatom 59 177 3 0 0 0 - - -;
+#X floatatom 252 240 5 0 100 0 - #0-hsLF -;
+#X floatatom 299 239 5 85 150 0 - #0-hsHF -;
+#X obj 252 266 mtof;
+#X obj 299 266 mtof;
+#X text 240 218 poles;
+#X text 296 218 zeros;
+#X floatatom 356 231 5 0 0 0 - - -;
+#X obj 356 208 expr $f1 + $f2;
+#X obj 51 106 del 100;
+#X obj 51 82 t b f, f 44;
+#X obj 485 145 moses 0;
+#X obj 535 174 * -5;
+#X obj 51 154 filter-graph1 100 5000;
+#X obj 51 55 expr 100 * ( 1 - pow(100 \, -1*$f1) );
+#X obj 230 301 butterworth3~;
+#X obj 484 174 * -50;
+#X obj 51 28 r \$0-hsF_snd;
+#X obj 51 130 t b;
+#X obj 255 125 s \$0-hsLF;
+#X obj 356 255 s \$0-hsHF;
+#X obj 391 100 r \$0-hsGain_snd;
+#X obj 391 124 t b f;
+#X obj 391 148 s \$0-hsF_rec;
+#X obj 51 329 filter-graph2 \$0-highShelf;
+#N canvas 0 358 477 416 sound 0;
+#X obj 96 73 r~ \$0-source;
+#X obj 114 328 throw~ \$0-postFilter;
+#X obj 101 139 *~, f 15;
+#X obj 200 110 line~;
+#X obj 201 37 r \$0-filterType_snd;
+#X msg 201 85 \$1 5;
+#X floatatom 263 223 5 0 100 0 - #0-hsLF -;
+#X floatatom 310 222 5 85 150 0 - #0-hsHF -;
+#X obj 263 249 mtof;
+#X obj 310 249 mtof;
+#X text 251 201 poles;
+#X text 307 201 zeros;
+#X obj 114 296 butterworth3~;
+#X obj 201 61 == 1;
+#X connect 0 0 2 0;
+#X connect 2 0 12 0;
+#X connect 3 0 2 1;
+#X connect 4 0 13 0;
+#X connect 5 0 3 0;
+#X connect 6 0 8 0;
+#X connect 7 0 9 0;
+#X connect 8 0 12 1;
+#X connect 9 0 12 2;
+#X connect 12 0 1 0;
+#X connect 13 0 5 0;
+#X restore 712 263 pd sound;
+#X obj 129 118 inlet;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 15 1;
+#X connect 4 0 15 2;
+#X connect 7 0 20 0;
+#X connect 8 0 7 0;
+#X connect 9 0 18 0;
+#X connect 10 0 9 0;
+#X connect 10 1 8 0;
+#X connect 10 1 19 0;
+#X connect 11 0 16 0;
+#X connect 11 1 12 0;
+#X connect 12 0 8 1;
+#X connect 13 0 0 0;
+#X connect 13 0 24 0;
+#X connect 13 1 15 0;
+#X connect 13 1 24 1;
+#X connect 13 2 24 2;
+#X connect 14 0 10 0;
+#X connect 15 0 24 3;
+#X connect 16 0 8 1;
+#X connect 17 0 14 0;
+#X connect 18 0 13 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 22 1 11 0;
+#X connect 26 0 9 0;
+#X restore 631 328 pd hs_Logic;
+#X obj 631 197 cnv 15 198 98 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 619 191 3;
+#X obj 630 311 bng 15 250 50 0 empty reset <---Press_to_display_filter_response
+17 7 0 10 -262144 -1 -1;
+#X obj 1022 137 cnv 15 405 30 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-lowShelf 100 float 1;
+#A 0 1.84426 1.84588 1.84206 1.84167 1.84515 1.84541 1.84066 1.8406
+1.84199 1.84677 1.83981 1.84614 1.84001 1.83649 1.83177 1.83333 1.82544
+1.8236 1.81714 1.80366 1.78733 1.77041 1.74817 1.72484 1.69501 1.66199
+1.62701 1.58496 1.5491 1.50812 1.46593 1.42494 1.38607 1.34793 1.31259
+1.27953 1.24939 1.22171 1.19658 1.17379 1.15237 1.13624 1.12047 1.10631
+1.09381 1.08288 1.07385 1.06566 1.05836 1.05193 1.04633 1.04141 1.03691
+1.03187 1.02938 1.0263 1.02348 1.02084 1.0183 1.01712 1.01479 1.01411
+1.01281 1.01165 1.0105 1.0099 1.00776 1.00788 1.00717 1.00649 1.00565
+1.00477 1.00399 1.00484 1.00424 1.00391 1.00353 1.00323 1.00319 1.0019
+1.00256 1.00236 1.00218 1.00193 1.00161 1.00099 1.00179 1.0015 1.0014
+1.00114 1.00108 1.00088 1.00015 1.00096 1.00089 1.00074 1.0008 1.0005
+1.00038 1.00078;
+#X coords 0 3 99 0 200 100 1 0 0;
+#X restore 1130 196 graph;
+#X text 1085 288 gain=0;
+#X text 1119 256 1;
+#X obj 1133 296 hsl 100 15 0 1 0 0 \$0-lsF_snd \$0-lsF_rec frequency
+103 8 0 10 -166441 -262144 -1 4950 1;
+#X obj 1330 198 vsl 15 95 -1 1 0 0 \$0-lsGain_snd \$0-lsGain_rec gain
+0 -9 0 10 -166441 -262144 -1 7990 1;
+#X obj 1131 197 cnv 15 198 98 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 1119 191 3;
+#X obj 1130 311 bng 15 250 50 0 empty reset <---Press_to_display_filter_response
+17 7 0 10 -262144 -1 -1;
+#N canvas 610 463 983 642 ls_Logic 0;
+#X floatatom 59 177 3 0 0 0 - - -;
+#X floatatom 252 240 5 0 100 0 - #0-lsLF -;
+#X floatatom 299 239 5 85 150 0 - #0-lsHF -;
+#X obj 252 266 mtof;
+#X obj 299 266 mtof;
+#X text 240 218 poles;
+#X text 296 218 zeros;
+#X floatatom 356 231 5 0 0 0 - - -;
+#X obj 356 208 expr $f1 + $f2;
+#X obj 51 106 del 100;
+#X obj 51 82 t b f, f 44;
+#X obj 485 145 moses 0;
+#X obj 51 154 filter-graph1 100 5000;
+#X obj 51 55 expr 100 * ( 1 - pow(100 \, -1*$f1) );
+#X obj 230 301 butterworth3~;
+#X obj 51 130 t b;
+#X obj 391 124 t b f;
+#N canvas 0 23 477 416 sound 0;
+#X obj 96 73 r~ \$0-source;
+#X obj 114 328 throw~ \$0-postFilter;
+#X obj 101 139 *~, f 15;
+#X obj 200 110 line~;
+#X obj 201 37 r \$0-filterType_snd;
+#X msg 201 85 \$1 5;
+#X floatatom 263 223 5 0 100 0 - #0-lsLF -;
+#X floatatom 310 222 5 85 150 0 - #0-lsHF -;
+#X obj 263 249 mtof;
+#X obj 310 249 mtof;
+#X text 251 201 poles;
+#X text 307 201 zeros;
+#X obj 114 296 butterworth3~;
+#X obj 201 61 == 2;
+#X obj 335 285 r reset;
+#X msg 335 309 1;
+#X obj 412 314 loadbang;
+#X connect 0 0 2 0;
+#X connect 2 0 12 0;
+#X connect 3 0 2 1;
+#X connect 4 0 13 0;
+#X connect 5 0 3 0;
+#X connect 6 0 8 0;
+#X connect 7 0 9 0;
+#X connect 8 0 12 1;
+#X connect 9 0 12 2;
+#X connect 12 0 1 0;
+#X connect 13 0 5 0;
+#X connect 14 0 15 0;
+#X connect 15 0 12 3;
+#X connect 16 0 15 0;
+#X restore 712 263 pd sound;
+#X obj 129 118 inlet;
+#X obj 49 424 filter-graph2 \$0-lowShelf;
+#X obj 51 28 r \$0-lsF_snd;
+#X obj 255 125 s \$0-lsLF;
+#X obj 356 255 s \$0-lsHF;
+#X obj 391 100 r \$0-lsGain_snd;
+#X obj 391 148 s \$0-lsF_rec;
+#X obj 184 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 335 285 r reset;
+#X msg 335 309 1;
+#X obj 535 174 * 5;
+#X obj 485 176 * 5;
+#X obj 412 314 loadbang;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 14 1;
+#X connect 4 0 14 2;
+#X connect 7 0 22 0;
+#X connect 8 0 7 0;
+#X connect 9 0 15 0;
+#X connect 10 0 9 0;
+#X connect 10 1 8 0;
+#X connect 10 1 21 0;
+#X connect 11 0 29 0;
+#X connect 11 1 28 0;
+#X connect 12 0 0 0;
+#X connect 12 0 19 0;
+#X connect 12 1 14 0;
+#X connect 12 1 19 1;
+#X connect 12 2 19 2;
+#X connect 13 0 10 0;
+#X connect 14 0 19 3;
+#X connect 15 0 12 0;
+#X connect 16 0 24 0;
+#X connect 16 1 11 0;
+#X connect 18 0 9 0;
+#X connect 20 0 13 0;
+#X connect 23 0 16 0;
+#X connect 25 0 15 0;
+#X connect 26 0 27 0;
+#X connect 27 0 14 3;
+#X connect 28 0 8 1;
+#X connect 29 0 8 1;
+#X connect 30 0 27 0;
+#X restore 1131 328 pd ls_Logic;
+#X text 1052 136 Low Shelving: control below a certain frequency.;
+#X obj 14 268 cnv 15 410 70 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 15 188 • May offer one (selecting gain) or two controls (selecting
+frequency and gain);
+#X text 15 237 • Offer general control over bass or treble;
+#X text 22 268 Common shelving EQ use in studios:;
+#X text 22 288 • Pre-Emphasis: boosting frequencies on the way to
+tape.;
+#X text 22 308 • De-Emphasis: cutting frequencies off tape (noise
+reduction).;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-peakEQ 100 float 1;
+#A 0 0.976074 0.975757 0.977768 0.979015 0.976032 0.977275 0.976789
+0.976263 0.97626 0.976808 0.979217 0.980311 0.982038 0.984789 0.988742
+0.994819 1.00584 1.03285 1.10273 1.40201 3.48711 1.41923 1.11387 1.04166
+1.01388 1.00047 0.993051 0.988465 0.984902 0.982732 0.981809 0.980663
+0.979713 0.979074 0.978429 0.977525 0.977696 0.977383 0.977103 0.976888
+0.976384 0.975946 0.975563 0.976237 0.976116 0.975935 0.975922 0.975838
+0.975541 0.974823 0.975635 0.975578 0.975459 0.975334 0.975122 0.974632
+0.975358 0.975317 0.975243 0.975263 0.974764 0.974551 0.974492 0.975167
+0.97514 0.974989 0.975108 0.975094 0.974567 0.975062 0.975049 0.975037
+0.974999 0.974658 0.974381 0.973973 0.974979 0.97495 0.974819 0.975052
+0.975034 0.974197 0.974937 0.974941 0.974963 0.974724 0.974918 0.974898
+0.973647 0.974849 0.97485 0.97502 0.975131 0.973398 0.972574 0.975587
+0.975688 0.971857 0.982772 1.03451;
+#X coords 0 3 99 0 200 100 1 0 0;
+#X restore 2180 217 graph;
+#X text 2134 307 gain=0;
+#X text 2169 277 1;
+#X obj 2183 317 hsl 100 15 0.01 0.5 0 0 \$0-peakF_snd \$0-peakF_rec
+centre_frequency 105 8 0 10 -166441 -262144 -1 3839 1;
+#X obj 2380 219 vsl 15 95 -1 1 0 0 \$0-peakGain_snd \$0-peakGain_rec
+gain 0 -9 0 10 -166441 -262144 -1 7050 1;
+#X obj 2181 218 cnv 15 198 98 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 2169 212 3;
+#X obj 2180 332 bng 15 250 50 0 empty reset <---Press_to_display_filter_response
+17 7 0 10 -262144 -1 -1;
+#N canvas 0 23 996 494 peak_Logic 0;
+#N canvas 1055 461 745 496 PeakEQ_display 0;
+#X obj 37 37 inlet;
+#X obj 41 91 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X floatatom 50 185 3 0 0 0 - - -;
+#X floatatom 277 105 5 0 99 0 - #0-PeakPole -;
+#X obj 42 162 filter-graph1 100 22050;
+#X obj 277 128 / 100;
+#X floatatom 331 104 4 0 100 0 - #0-PeakZero -;
+#X obj 331 127 / 100;
+#X floatatom 407 103 5 0 180 0 - #0-Angle -;
+#X text 416 65 angle;
+#X text 400 81 (degrees);
+#X obj 461 172 sin;
+#X obj 406 173 cos;
+#X obj 406 124 * 3.14159;
+#X obj 406 148 / 180;
+#X obj 242 252 *;
+#X obj 406 197 t b f;
+#X obj 461 197 t b f;
+#X obj 210 280 cpole~;
+#X obj 227 311 czero~;
+#X text 267 69 pole and zero;
+#X text 285 84 radii (%);
+#X obj 278 253 *;
+#X obj 315 279 *;
+#X obj 350 279 *;
+#X obj 42 337 filter-graph2 \$0-peakEQ;
+#X obj 41 111 del 100;
+#X connect 0 0 1 0;
+#X connect 1 0 26 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 4 0 25 0;
+#X connect 4 1 18 0;
+#X connect 4 1 25 1;
+#X connect 4 2 25 2;
+#X connect 5 0 15 0;
+#X connect 5 0 22 0;
+#X connect 6 0 7 0;
+#X connect 7 0 23 0;
+#X connect 7 0 24 0;
+#X connect 8 0 13 0;
+#X connect 11 0 17 0;
+#X connect 12 0 16 0;
+#X connect 13 0 14 0;
+#X connect 14 0 12 0;
+#X connect 14 0 11 0;
+#X connect 15 0 18 2;
+#X connect 15 0 1 0;
+#X connect 16 0 15 0;
+#X connect 16 0 23 0;
+#X connect 16 1 15 1;
+#X connect 16 1 23 1;
+#X connect 17 0 22 0;
+#X connect 17 0 24 0;
+#X connect 17 1 24 1;
+#X connect 17 1 22 1;
+#X connect 18 0 19 0;
+#X connect 18 1 19 1;
+#X connect 19 0 25 3;
+#X connect 22 0 18 3;
+#X connect 23 0 19 2;
+#X connect 23 0 1 0;
+#X connect 24 0 19 3;
+#X connect 26 0 4 0;
+#X restore 614 343 pd PeakEQ_display;
+#N canvas 1138 172 594 560 sound 0;
+#X obj 96 73 r~ \$0-source;
+#X obj 88 492 throw~ \$0-postFilter;
+#X obj 101 139 *~, f 15;
+#X obj 200 110 line~;
+#X obj 201 37 r \$0-filterType_snd;
+#X msg 201 85 \$1 5;
+#X floatatom 179 206 5 0 99 0 - #0-PeakPole -;
+#X obj 179 229 / 100;
+#X floatatom 233 205 4 0 100 0 - #0-PeakZero -;
+#X obj 233 228 / 100;
+#X floatatom 309 204 5 0 180 0 - #0-Angle -;
+#X text 318 166 angle;
+#X text 302 182 (degrees);
+#X obj 363 273 sin;
+#X obj 308 274 cos;
+#X obj 308 225 * 3.14159;
+#X obj 308 249 / 180;
+#X obj 144 353 *;
+#X obj 308 298 t b f;
+#X obj 363 298 t b f;
+#X obj 112 381 cpole~;
+#X obj 129 412 czero~;
+#X text 169 170 pole and zero;
+#X text 187 185 radii (%);
+#X obj 180 354 *;
+#X obj 217 380 *;
+#X obj 252 380 *;
+#X obj 25 158 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 25 178 metro 50;
+#X obj 25 202 snapshot~;
+#X floatatom 25 226 5 0 0 0 - - -;
+#X floatatom 249 70 5 0 0 0 - - -;
+#X obj 201 61 == 4;
+#X connect 0 0 2 0;
+#X connect 2 0 29 0;
+#X connect 2 0 20 0;
+#X connect 3 0 2 1;
+#X connect 4 0 31 0;
+#X connect 4 0 32 0;
+#X connect 5 0 3 0;
+#X connect 6 0 7 0;
+#X connect 7 0 17 0;
+#X connect 7 0 24 0;
+#X connect 8 0 9 0;
+#X connect 9 0 25 0;
+#X connect 9 0 26 0;
+#X connect 10 0 15 0;
+#X connect 13 0 19 0;
+#X connect 14 0 18 0;
+#X connect 15 0 16 0;
+#X connect 16 0 14 0;
+#X connect 16 0 13 0;
+#X connect 17 0 20 2;
+#X connect 18 0 17 0;
+#X connect 18 0 25 0;
+#X connect 18 1 17 1;
+#X connect 18 1 25 1;
+#X connect 19 0 24 0;
+#X connect 19 0 26 0;
+#X connect 19 1 26 1;
+#X connect 19 1 24 1;
+#X connect 20 0 21 0;
+#X connect 20 1 21 1;
+#X connect 21 0 1 0;
+#X connect 24 0 20 3;
+#X connect 25 0 21 2;
+#X connect 26 0 21 3;
+#X connect 27 0 28 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 32 0 5 0;
+#X restore 440 231 pd sound;
+#N canvas 0 23 450 287 peak_maths 0;
+#X obj 332 77 * 180;
+#X obj 332 53 r \$0-peakF_snd;
+#X obj 332 101 s \$0-Angle;
+#X obj 67 231 s \$0-PeakPole;
+#X obj 171 231 s \$0-PeakZero;
+#X obj 114 196 unpack;
+#X obj 75 19 r \$0-peakGain_snd;
+#X obj 75 43 moses 0, f 22;
+#X obj 75 67 t f b;
+#X obj 75 115 +;
+#X obj 75 139 pack;
+#X msg 124 91 100;
+#X obj 236 149 pack;
+#X obj 236 77 t b f;
+#X msg 226 110 99;
+#X obj 271 104 * -10;
+#X obj 272 128 + 99;
+#X obj 75 91 * 10;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 5 0 3 0;
+#X connect 5 1 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 1 13 0;
+#X connect 8 0 17 0;
+#X connect 8 1 11 0;
+#X connect 9 0 10 0;
+#X connect 10 0 5 0;
+#X connect 11 0 9 1;
+#X connect 11 0 10 1;
+#X connect 12 0 5 0;
+#X connect 13 0 14 0;
+#X connect 13 1 15 0;
+#X connect 14 0 12 0;
+#X connect 15 0 16 0;
+#X connect 16 0 12 1;
+#X connect 17 0 9 0;
+#X restore 514 398 pd peak_maths;
+#X obj 615 312 inlet;
+#X connect 3 0 0 0;
+#X restore 2181 354 pd peak_Logic;
+#X obj 1519 167 cnv 15 415 70 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 1526 170 Peaking/Sweep EQ (sometimes referred to as Bell EQ)
+;
+#X text 1526 189 • Peaking filters are characterized by a bell shaped
+boost or cut curve and are usually found affecting mid-range in budget
+/ old / semi-pro equipment.;
+#X obj 2028 124 cnv 15 415 70 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 2035 127 Peaking/Sweep EQ (sometimes referred to as Bell EQ)
+;
+#X text 2035 146 Sweep equalisers are similar to peaking equalizers
+\, while offering extra variable control over center frequency and
+gain.;
+#X obj 2511 119 cnv 15 425 70 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X obj 2518 199 cnv 15 410 80 empty empty empty 20 12 0 14 -245565
+-66577 0;
+#X text 2514 139 Semi-parametric equalisers offer non-continuous control
+over the Q factor i.e. they may offer one or a few switchable values
+for Q.;
+#X text 2513 118 Semi-Parametric EQ;
+#X text 2521 199 REMEMBER:;
+#X text 2522 217 The ‘Quality’ or ‘Q’ factor provides information
+on how narrow (precise) the effects of an equaliser are i.e. the ‘Quality’
+factor is proportional to the number of octaves (or fraction of an
+octave) being affected by a filter.;
+#X obj 2516 286 cnv 15 425 50 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 2535 305 Parametric EQ’s have a variable control over the
+center frequency \, ‘Q’ or bandwidth \, gain.;
+#X text 2535 287 Parametric or Fully-Parametric EQ;
+#X obj 3808 111 geq~;
+#N canvas 0 23 450 300 geq 0;
+#X obj 96 73 r~ \$0-source;
+#X obj 101 139 *~, f 15;
+#X obj 200 110 line~;
+#X obj 201 37 r \$0-filterType_snd;
+#X msg 201 85 \$1 5;
+#X obj 101 163 outlet~;
+#X obj 201 61 == 7;
+#X floatatom 238 61 5 0 0 0 - - -;
+#X obj 349 86 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 349 106 metro 50;
+#X obj 349 130 snapshot~;
+#X floatatom 349 154 5 0 0 0 - - -;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 1 0 10 0;
+#X connect 2 0 1 1;
+#X connect 3 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 2 0;
+#X connect 6 0 4 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X restore 3808 79 pd geq;
+#X obj 3018 131 cnv 15 425 210 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 3021 132 Graphic Equalisers;
+#X text 3021 151 A graphic EQ consists of a number of bell equalisers
+with overlapping bands and independent control over cut / boost (generally
+in the form of a linear fader).;
+#X text 3021 198 Graphic EQ Types;
+#X text 3021 217 Graphic equalisers are denominated by the gap between
+centre frequencies.;
+#X text 3021 250 Examples:;
+#X text 3021 269 1 Octave: budget on-board musical instrument EQ;
+#X text 3021 288 1/3 Octave: extensive usage in live concerts (28 to
+31 bands);
+#X text 3021 321 1/6 Octave: control room treatment;
+#X obj 3504 145 cnv 15 300 60 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X text 3505 142 This is a simple (and not particularly;
+#X text 3505 157 accurate) graphic EQ;
+#X text 3505 174 It has 1 octave between centre frequencies;
+#X obj 3809 367 throw~ \$0-postFilter;
+#X obj 3824 409 s \$0-geqID;
+#X connect 13 0 10 0;
+#X connect 22 0 23 0;
+#X connect 38 0 39 0;
+#X connect 55 0 70 0;
+#X connect 55 1 71 0;
+#X connect 56 0 55 0;
+#X coords 0 -1 1 1 450 250 1 0 100;
+#X restore 159 118 pd \$0-pass/cut_filters;
+#X text 35 31 High Shelf;
+#X text 35 48 Low Shelf;
+#X text 35 63 Peaking EQ;
+#X text 35 77 Sweep EQ;
+#X text 33 15 Shelving Equalisers;
+#X text 35 92 Semi-Parametric vs Parametric EQ;
+#X text 35 107 Graphic EQ;
+#X text 35 121 Example;
+#X coords 0 -1 1 1 610 390 2 10 10;

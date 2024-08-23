@@ -1,0 +1,61 @@
+#N canvas 0 23 1280 751 12;
+#X obj 117 67 expr~ ($v1 * 0.5) + 0.5;
+#X floatatom 299 67 5 0 0 0 - - -;
+#X floatatom 299 114 5 0 0 0 - - -;
+#X obj 299 90 expr pow(2 \, $f1) - 1;
+#X obj 117 91 expr~ int($v1*$f2);
+#X text 22 68 scale 0 --> 1;
+#X text 1 92 scale 0 --> BD-1;
+#X obj 117 115 expr~ (($v1 / $f2)*2) - 1;
+#X obj 117 195 *~;
+#X obj 117 219 dac~;
+#X floatatom 194 193 5 0 0 0 - - -;
+#X msg 194 216 \$1 5;
+#X obj 194 240 line~;
+#X obj 117 43 osc~ 100;
+#X obj 854 173 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 854 193 f \$0;
+#X msg 849 240 read -resize ./z_abstractions/FiftyWays.wav \$1-sample
+;
+#X floatatom 854 217 5 0 0 0 - - -;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-sample 100 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 191 328 graph;
+#X obj 565 312 openpanel;
+#X obj 565 291 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 565 334 pack s \$0;
+#X msg 565 358 read -resize \$1 \$2-sample;
+#X obj 565 378 soundfiler;
+#X msg 830 340 ./breaks/amenBreak.wav;
+#X msg 830 359 ./breaks/PlanetaryCitizen.wav;
+#X msg 830 321 /z_abstractions/FiftyWays.wav;
+#X connect 0 0 4 0;
+#X connect 1 0 3 0;
+#X connect 3 0 2 0;
+#X connect 3 0 4 1;
+#X connect 3 0 7 1;
+#X connect 4 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 8 0 9 1;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 8 1;
+#X connect 13 0 0 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 15 0 17 0;
+#X connect 19 0 21 0;
+#X connect 20 0 19 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 24 0 21 0;
+#X connect 25 0 21 0;
+#X connect 26 0 21 0;

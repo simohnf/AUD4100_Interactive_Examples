@@ -1,0 +1,81 @@
+#N canvas 0 23 1280 751 12;
+#X obj 118 199 *~;
+#X obj 118 223 dac~;
+#X floatatom 195 199 5 0 0 0 - - -;
+#X msg 195 222 \$1 5;
+#X obj 195 246 line~;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-sample 205511 float 2;
+#X coords 0 1 205511 -1 200 140 1;
+#X restore 191 332 graph;
+#X obj 565 315 openpanel;
+#X obj 565 295 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 565 339 pack s \$0;
+#X msg 565 363 read -resize \$1 \$2-sample;
+#X obj 565 387 soundfiler;
+#X msg 684 295 FiftyWays.wav;
+#X obj 725 223 loadbang;
+#X obj 796 223 r reset;
+#X obj 120 63 tabplay~ \$0-sample;
+#X obj 880 455 hsl 128 15 689 44100 0 0 \$0-sr_snd \$0-sr_rec empty
+-2 -8 0 10 -262144 -1 -1 12700 1;
+#X floatatom 877 475 5 2 16 1 Sample_Rate - -;
+#X obj 826 435 change;
+#X obj 749 244 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 445 116 bng 15 250 50 0 \$0-play_snd empty Play_Sample 17 7
+0 10 -262144 -1 -1;
+#X obj 118 3 r \$0-play_snd;
+#X obj 791 319 s \$0-sr_rec;
+#X msg 793 295 44100;
+#X obj 655 21 vradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144 -1
+-1 1;
+#X obj 655 146 expr 44100 / (pow (2 \, $f1));
+#X floatatom 655 170 5 0 0 0 - - -;
+#X obj 1018 354 switch~;
+#X obj 883 7 vradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144 -1
+-1 7;
+#X obj 883 134 expr pow (2 \, $f1);
+#X obj 884 241 pack;
+#X obj 883 158 t f b f, f 17;
+#X msg 930 198 1;
+#X obj 930 222 /;
+#X msg 1018 328 set 64 \$1 \$2 \, 1;
+#X floatatom 930 246 5 0 0 0 - - -;
+#X floatatom 830 184 5 0 0 0 - - -;
+#X msg 484 553 \; pd audio-dialog 0 0 0 0 2 0 0 0 0 0 0 0 2 0 0 0 22050
+25 -1 64;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 1;
+#X connect 6 0 8 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 11 0 8 0;
+#X connect 12 0 18 0;
+#X connect 13 0 18 0;
+#X connect 14 0 0 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 17 0 15 0;
+#X connect 18 0 22 0;
+#X connect 18 0 11 0;
+#X connect 20 0 14 0;
+#X connect 22 0 21 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 27 0 28 0;
+#X connect 28 0 30 0;
+#X connect 29 0 33 0;
+#X connect 30 0 35 0;
+#X connect 30 0 29 0;
+#X connect 30 1 31 0;
+#X connect 30 2 32 1;
+#X connect 31 0 32 0;
+#X connect 32 0 34 0;
+#X connect 32 0 29 1;
+#X connect 33 0 26 0;

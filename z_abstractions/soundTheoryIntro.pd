@@ -1,0 +1,26 @@
+#N canvas 0 23 1036 545 12;
+#X obj 74 19 cnv 15 450 80 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 124 42 Click here --->;
+#X msg 282 41 \; pd audio-properties;
+#X obj 252 43 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 99 21 Firstly \, ensure your audio driver is set correctly
+;
+#X text 127 76 You can also test your audio using the "Media" menu
+;
+#X text 94 350 (Use the buttons on the left to explore some fundamental
+concepts of audio theory);
+#X obj 74 126 cnv 15 450 160 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 91 128 What is Sound?;
+#X text 92 146 Sound may be described as a physical or as a perceptual
+phenomenon:;
+#X text 92 184 • As a physical phenomenon \, sound may be defined
+as a periodic fluctuation in pressure above and below a normal stable
+level.;
+#X text 94 233 • As a perceptual phenomenon \, sound may be defined
+as the perceived effect of a periodic fluctuation in pressure within
+a specific range.;
+#X connect 3 0 2 0;
+#X coords 0 -1 1 1 610 390 2 10 10;

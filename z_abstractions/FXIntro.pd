@@ -1,0 +1,24 @@
+#N canvas 0 23 1036 545 12;
+#X obj 74 19 cnv 15 450 80 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 124 42 Click here --->;
+#X msg 282 41 \; pd audio-properties;
+#X obj 252 43 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 99 21 Firstly \, ensure your audio driver is set correctly
+;
+#X text 127 76 You can also test your audio using the "Media" menu
+;
+#X obj 74 126 cnv 15 450 180 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X text 94 350 (Use the buttons on the left to explore some fundamental
+concepts related to equalisation);
+#X text 95 133 Effects processors may be divided in the following categories:
+;
+#X text 95 170 • Time-Delay Based Effects;
+#X text 95 190 • Amplitude Based Effects;
+#X text 95 210 • Waveform Distortion Effects;
+#X text 95 230 • Filter Based Effects;
+#X text 95 250 • Other;
+#X connect 3 0 2 0;
+#X coords 0 -1 1 1 610 390 2 10 10;

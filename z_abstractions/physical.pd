@@ -1,0 +1,59 @@
+#N canvas 0 23 1036 545 12;
+#X text 112 44 Sound may be described as a pressure wave that that
+travels through matter in any state (gas \, liquid or solid). Sound
+does not propagate in vacuum or through media at absolute zero degrees
+in temperature.;
+#X text 110 27 Sound as a Physical Phenomenon:;
+#X text 107 117 The periodic character of sound implies that there
+are two distinct \, recurring stages of fluctuations in pressure:;
+#X text 108 150 • Compression (pressure above a normal stable level)
+;
+#X text 108 169 • Rarefaction (pressure below a normal stable level)
+;
+#X text 58 246 Compression (+);
+#X text 58 293 Rarefaction (-);
+#X obj 168 229 cnv 15 298 49 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 168 278 cnv 15 298 49 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array \$0-scope 67 float 1;
+#A 0 -0.0980171 0 0.0980171 0.19509 0.290284 0.382683 0.471396 0.55557
+0.634393 0.707106 0.77301 0.831469 0.881921 0.923879 0.95694 0.980785
+0.995185 1 0.995185 0.980786 0.956941 0.92388 0.881922 0.831471 0.773012
+0.707108 0.634395 0.555572 0.471399 0.382686 0.290287 0.195093 0.0980197
+2.65359e-06 -0.0980144 -0.195088 -0.290282 -0.382681 -0.471394 -0.555568
+-0.634391 -0.707104 -0.773008 -0.831468 -0.88192 -0.923878 -0.956939
+-0.980785 -0.995184 -1 -0.995185 -0.980786 -0.956942 -0.923881 -0.881923
+-0.831472 -0.773013 -0.70711 -0.634397 -0.555574 -0.471401 -0.382688
+-0.29029 -0.195095 -0.0980223 -5.30718e-06 0.0980118;
+#X coords 0 1 66 -1 300 100 2 0 0;
+#X restore 167 228 graph;
+#X text 225 356 High;
+#X text 215 372 Pressure;
+#X text 383 341 |;
+#X text 383 332 |;
+#X text 383 326 ^;
+#X text 310 289 |;
+#X text 310 301 |;
+#X text 310 313 |;
+#X text 310 280 |;
+#X text 310 274 ^;
+#X text 240 243 |;
+#X text 240 255 |;
+#X text 240 267 |;
+#X text 240 279 |;
+#X text 240 291 |;
+#X text 240 303 |;
+#X text 240 315 |;
+#X text 240 234 |;
+#X text 240 228 ^;
+#X text 292 372 Pressure;
+#X text 302 356 Normal;
+#X text 356 372 Pressure;
+#X text 375 356 Low;
+#X text 310 324 |;
+#X text 310 335 |;
+#X text 240 327 |;
+#X text 240 338 |;
+#X coords 0 -1 1 1 610 390 2 10 10;
