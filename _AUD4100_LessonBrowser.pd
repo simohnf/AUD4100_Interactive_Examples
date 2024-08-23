@@ -1,0 +1,42 @@
+#N canvas 0 41 962 678 12;
+#X obj 125 7 cnv 15 820 660 empty empty empty 20 12 0 14 -228926 -66577
+0;
+#N canvas 435 23 862 758 AUD4100_Interactive_Lessons 0;
+#X obj 1 1 AUD4100_1_SoundTheory;
+#X coords 0 -1 1 1 822 662 2 0 0;
+#X restore 124 6 pd AUD4100_Interactive_Lessons;
+#X obj 9 85 bng 15 250 50 0 \$0-info empty Information 17 8 0 12 -228856
+-262144 -1;
+#X obj 9 24 vradio 15 1 0 3 \$0-lesson_snd \$0-lesson_rec Lesson 0
+-8 0 10 -191407 -1 -1 0;
+#N canvas 0 23 946 519 Lesson_Logic 0;
+#X msg 311 211 \; pd-AUD4100_Interactive_Lessons clear \, \; pd-AUD4100_Interactive_Lessons
+obj 1 1 AUD4100_2_Equalisation \, \; MASTERreset bang \, \; pd-AUD4100_Interactive_Lessons
+dirty 0;
+#X msg 170 102 \; pd-AUD4100_Interactive_Lessons clear \, \; pd-AUD4100_Interactive_Lessons
+obj 1 1 AUD4100_1_SoundTheory \, \; MASTERreset bang \, \; pd-AUD4100_Interactive_Lessons
+dirty 0;
+#X msg 492 330 \; pd-AUD4100_Interactive_Lessons clear \, \; pd-AUD4100_Interactive_Lessons
+obj 1 1 AUD4100_3_FX_Processing \, \; MASTERreset bang \, \; pd-AUD4100_Interactive_Lessons
+dirty 0;
+#X obj 237 28 r \$0-lesson_snd;
+#X obj 237 52 sel 0 1 2 3;
+#N canvas 384 229 440 119 info 0;
+#X obj 2 13 r \$0-info;
+#X msg 2 32 \; pd-info vis 1;
+#X obj 1 1 cnv 5 200 100 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X text 11 58 Created August/September 2020 by Simon John Fay \, SAE
+London;
+#X text 12 23 Interactive Examples for AUD4100;
+#X connect 0 0 1 0;
+#X restore 492 59 pd info;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 1 0 0;
+#X connect 4 2 2 0;
+#X coords 0 -1 1 1 120 100 2 0 0;
+#X restore 4 6 pd Lesson_Logic;
+#X text 24 22 Sound Theory;
+#X text 24 38 Equalisation;
+#X text 24 53 FX Processing;
